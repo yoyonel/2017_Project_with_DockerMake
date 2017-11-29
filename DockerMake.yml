@@ -1,13 +1,18 @@
 # FROM: ubuntu:trusty  # same FROM from 'indigo-ros-core' image
 
-project-ros:
-  FROM: ros:kinetic-ros-base
-  build_directory: project/ros
+# project-ros:
+#   FROM: ros:kinetic-ros-base
+#   build_directory: project/ros
   
+project-python:
+  FROM: python:3.6-jessie
+  build_directory: .
+
 project-base:
   build_directory: project/base
   requires:
-    - project-ros
+    # - project-ros
+    - project-python
 
 # urls:
 # - https://github.com/docker/docker/issues/5383

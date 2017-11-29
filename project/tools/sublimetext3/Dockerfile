@@ -30,8 +30,14 @@ RUN echo "install SublimeText3" \
 
 # RUN apt-get -y update \
   # && apt-get -y install \
-RUN apt-get -y install \
-  language-pack-en-base
+# RUN apt-get -y install \
+#   language-pack-en-base
+# https://stackoverflow.com/questions/43708896/unable-to-locate-package-language-pack-en
+RUN apt-get install -y locales locales-all
+ENV LC_ALL en_US.UTF-8
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US.UTF-8
+
 RUN apt-get install sudo
 RUN sudo apt-get purge -y locales
 RUN sudo apt-get install -y locales 

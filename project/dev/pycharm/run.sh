@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-source /entry-point.sh
+# source /entry-point.sh
 
 # /opt/qt57/bin/qtcreator-wrapper
 PYCHARM=`sh /pycharm-community-2016.3.3/bin/pycharm.sh`
@@ -20,7 +20,7 @@ else
 
 	echo "NEWUSER: $NEWUSER"
 
-	echo "Add user for qtcreator"
+	echo "Add user for pycharm"
 	export uid=1000 gid=1000 && \
 	mkdir -p /home/$NEWUSER && \
 	# echo "$NEWUSER:x:${uid}:${gid}:$NEWUSER,,,:/home/$NEWUSER:/bin/zsh" >> /etc/passwd && \
