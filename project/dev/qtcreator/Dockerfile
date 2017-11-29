@@ -8,11 +8,16 @@
 #       qt57creator-plugin-ros \
 #       clang-format-3.6 \
 #       dbus
+# https://unix.stackexchange.com/questions/230697/how-to-install-newest-clang-3-8-by-apt
+# https://chrisjean.com/fix-apt-get-update-the-following-signatures-couldnt-be-verified-because-the-public-key-is-not-available/
+RUN apt-add-repository "deb http://llvm.org/apt/jessie/ llvm-toolchain-jessie-3.6 main" && \
+	apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 15CF4D18AF4F7421
+
 RUN apt-get update
-RUN apt-get install -y qtcreator
 RUN apt-get install -y \
 	clang-format-3.6 \
 	dbus
+RUN apt-get install -y qtcreator
 
 ### FONT
 COPY .fonts/SourceCodePro+Powerline+AwesomeRegular+Docker.ttf /root/.fonts/SourceCodePro+Powerline+AwesomeRegular+Docker.ttf
