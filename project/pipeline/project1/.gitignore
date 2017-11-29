@@ -1,0 +1,29 @@
+# Mercurial
+.hg
+
+# ROS: tools for rosbag
+bagedit
+
+#
+build/
+
+# PyCharm
+.PyCharmCE2016.3
+
+#
+.java
+
+#
+overlay_ws
+
+#
+.config
+
+#
+records
+
+# QtCreator configs
+QtCreator/.config
+
+#
+sha256.txt

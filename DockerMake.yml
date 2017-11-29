@@ -1,0 +1,97 @@
+# FROM: ubuntu:trusty  # same FROM from 'indigo-ros-core' image
+
+project-ros:
+  FROM: ros:kinetic-ros-base
+  build_directory: project/ros
+  
+project-base:
+  build_directory: project/base
+  requires:
+    - project-ros
+
+# urls:
+# - https://github.com/docker/docker/issues/5383
+project-tools_base:
+  build_directory: project/tools/base
+  requires:
+    - project-base
+    
+project-tools_shell:
+  requires:
+    - project-tools_base
+  build_directory: project/tools/shell
+
+project-tools_shell-zsh:
+  requires:
+    - project-tools_shell
+  build_directory: project/tools/shell/zsh
+
+project-tools_shell-tmux:
+  requires:
+    - project-tools_shell
+  build_directory: project/tools/shell/tmux
+
+# version build
+project-tools_shell-tmux-build:
+  requires:
+    - project-tools_shell
+  build_directory: project/tools/shell/tmux/build
+
+project-tools_monitor:
+  requires:
+    - project-tools_shell
+  build_directory: project/tools/monitor
+
+project-tools_vim:
+  requires:
+    - project-tools_shell
+  build_directory: project/tools/vim
+    
+project-tools_sublimetext3:
+  requires:
+    - project-tools_shell
+  build_directory: project/tools/sublimetext3
+
+# urls:
+# - https://bugzilla.redhat.com/show_bug.cgi?id=1290691
+project-tools:
+  requires:
+    - project-tools_sublimetext3
+    - project-tools_vim
+    - project-tools_monitor
+    - project-tools_shell-zsh
+    - project-tools_shell-tmux
+  build_directory: project/tools
+
+project-dev_qtcreator:
+  requires:
+    - project-base
+  build_directory: project/dev/qtcreator
+
+project-dev_pycharm:
+  requires:
+    - project-base
+  build_directory: project/dev/pycharm
+
+project-dev:
+  requires:
+    - project-base
+    - project-tools
+    - project-dev_qtcreator
+    - project-dev_pycharm
+  build_directory: project/dev
+
+project-prototype:
+  requires:
+    - project-dev
+  build_directory: project/prototype
+
+project-prototype_docker:
+  requires:
+    - project-prototype
+  build_directory: project/pipeline
+  
+project-prototype_deploy:
+  requires:
+    - project-base
+    - project-tools
